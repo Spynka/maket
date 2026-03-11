@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Ксения Смирнова · графический дизайнер, веб-дизайнер, дизайнер мерча</title>
+
+    <!-- Профессиональная типографика: Satoshi + Space Grotesk -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/satoshi@latest/css/satoshi.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.8/css/space-grotesk.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f3f0;           
+            --text: #1e1b18;
+            --soft-dark: #2b2825;
+            --accent: #9e6b5e;        
+            --card-bg: #ffffff;
+            --border-light: rgba(0,0,0,0.08);
+            --space: clamp(2rem, 6vw, 5rem);
+            --transition: all 0.3s ease-out;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Satoshi', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-weight: 350;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            font-feature-settings: "ss02", "ss03", "kern";
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', 'Satoshi', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 650;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 620;
+            border-bottom: 3px solid var(--soft-dark);
+            padding-bottom: 0.2rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        p, li, address {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+
+        a {
+            color: currentColor;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4vw;
+        }
+
+        /* ===== ХЭДЕР с бургером и выпадающим списком ===== */
+        .header {
+            padding: 1.2rem 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--soft-dark);
+            background: var(--bg);
+            font-weight: 450;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            border-bottom: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-link:hover {
+            border-bottom: 1px solid var(--soft-dark);
+        }
+
+        /* Выпадающий список */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 250px;
+            background: var(--bg);
+            border: 2px solid var(--soft-dark);
+            border-top: none;
+            padding: 0.8rem 0;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            border-bottom: none;
+            white-space: nowrap;
+            text-transform: none;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .dropdown a:hover {
+            background: rgba(0,0,0,0.03);
+            border-bottom: none;
+        }
+
+        .header .contact-btn {
+            background: var(--soft-dark);
+            color: var(--bg);
+            padding: 0.7rem 2rem;
+            border-radius: 0px;
+            font-weight: 550;
+            border: none;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .header .contact-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-bottom: none;
+        }
+
+        .burger-checkbox {
+            display: none;
+        }
+        .burger-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 110;
+        }
+        .burger-icon span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--soft-dark);
+            transition: var(--transition);
+        }
+        .burger-menu {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+            }
+            .burger-icon {
+                display: flex;
+            }
+            .burger-checkbox:checked ~ .burger-menu {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg);
+                border-bottom: 2px solid var(--soft-dark);
+                padding: 1.5rem 4vw;
+                gap: 1rem;
+                z-index: 100;
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+            .burger-menu a {
+                border-bottom: none;
+                padding: 0.5rem 0;
+            }
+            .burger-menu .projects-group {
+                display: flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                gap: 0.5rem;
+                text-transform: none;
+                font-size: 0.95rem;
+                border-left: 2px solid var(--border-light);
+                padding-left: 1rem;
+            }
+            .burger-menu a:hover {
+                border-bottom: 1px solid var(--soft-dark);
+            }
+            .burger-menu .contact-btn {
+                display: inline-block;
+                background: var(--soft-dark);
+                color: var(--bg);
+                padding: 0.7rem 1.5rem;
+                margin-top: 0.5rem;
+                text-align: center;
+                border: none;
+                width: fit-content;
+            }
+        }
+
+        /* ===== КНОПКА НАВЕРХ ===== */
+        .to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--soft-dark);
+            color: var(--bg);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 99;
+            opacity: 0.8;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .to-top:hover {
+            background: var(--accent);
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        .to-top::after {
+            content: "↑";
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        /* ===== ДИНАМИЧЕСКАЯ ЧАСТЬ ===== */
+        .dynamic-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 5%;
+            margin: var(--space) 0;
+            min-height: 80vh;
+        }
+
+        .photo-sticky {
+            flex: 1 1 45%;
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+        }
+        .photo-sticky figure {
+            width: 100%;
+            aspect-ratio: 0.9 / 1; 
+            background: #d6cfc6;
+        }
+        .photo-sticky img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .scroll-text {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .info-block {
+            border-top: 2px solid var(--soft-dark);
+            padding-top: 1.5rem;
+        }
+        .info-block h3 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+        }
+        .info-block ul {
+            list-style: none;
+        }
+        .info-block li {
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            margin-top: 1rem;
+        }
+        .contact-icons a {
+            font-size: 1.3rem;
+            border-bottom: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .icon-tg::before { content: "⎆"; margin-right: 6px; font-weight: 300; }
+        .icon-phone::before { content: "⎔"; margin-right: 6px; }
+        .icon-email::before { content: "⌲"; margin-right: 6px; }
+        .icon-vk::before { content: "⌾"; margin-right: 6px; }
+
+        .speciality-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+        }
+
+        /* ===== КЕЙСЫ ===== */
+        .cases-showcase {
+            margin: 4rem 0;
+        }
+        .case-item {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+        .case-item.reverse {
+            flex-direction: row-reverse;
+        }
+        .case-info {
+            flex: 1;
+        }
+        .case-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .case-info p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .case-visual {
+            flex: 1;
+        }
+        .case-card-custom {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .case-image-custom {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #cbc3b9;
+            overflow: hidden;
+        }
+        .case-image-custom img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .case-card-custom h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1.2rem 1.2rem 0.8rem;
+        }
+        .case-card-custom p {
+            padding: 0 1.2rem 1.5rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .case-btn {
+            background: var(--soft-dark);
+            color: var(--bg);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            margin-top: 0.5rem;
+            border-radius: 0;
+        }
+        .case-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        .more-link {
+            display: inline-block;
+            margin: 1rem 0 3rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-bottom: 2px solid var(--soft-dark);
+            padding-bottom: 0.2rem;
+        }
+        .more-link:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* скиллы */
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .skill-item {
+            font-size: 1.1rem;
+            border-left: 2px solid var(--soft-dark);
+            padding-left: 1rem;
+        }
+
+        /* форма связи */
+        .contact-form {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 2.5rem;
+            margin: 4rem 0 2rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+        }
+        .form-group input,
+        .form-group textarea {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            padding: 0.9rem 1.2rem;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 1.1rem;
+            border-radius: 0;
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--soft-dark);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: var(--soft-dark);
+            color: var(--bg);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+            border-radius: 0;
+            margin-top: 2rem;
+        }
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+
+        footer {
+            border-top: 2px solid var(--soft-dark);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        /* ===== НАВИГАЦИЯ ПРОЕКТОВ ===== */
+        .project-nav {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0 1rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-arrow {
+            font-size: 1.5rem;
+            font-weight: 400;
+            border: 2px solid var(--soft-dark);
+            padding: 0.5rem 1.2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            background: transparent;
+            color: var(--soft-dark);
+            line-height: 1;
+        }
+        .nav-arrow:hover {
+            background: var(--soft-dark);
+            color: var(--bg);
+            border-color: var(--soft-dark);
+        }
+
+        .project-counter {
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            font-weight: 450;
+        }
+
+        .back-to-main {
+            text-transform: uppercase;
+            font-weight: 500;
+            border-bottom: 2px solid var(--soft-dark);
+            padding-bottom: 0.2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* ===== СТРАНИЦЫ ПРОЕКТОВ ===== */
+        .project-page {
+            display: none;
+        }
+        .project-page.active {
+            display: block;
+        }
+
+        .main-page.hidden {
+            display: none;
+        }
+
+        .project-header {
+            margin: 2rem 0 2.5rem;
+        }
+        .project-header h1 {
+            text-transform: none;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem 4rem;
+            background: var(--card-bg);
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--border-light);
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .meta-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            opacity: 0.6;
+            font-weight: 500;
+        }
+        .meta-value {
+            font-weight: 500;
+        }
+
+        .project-description {
+            margin: 2.5rem 0;
+            max-width: 800px;
+        }
+
+        .extra-section {
+            margin: 3rem 0;
+            border-left: 3px solid var(--soft-dark);
+            padding-left: 1.8rem;
+        }
+
+        /* ===== УЛУЧШЕННАЯ ГАЛЕРЕЯ ДЛЯ МНОГИХ ФОТО ===== */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        /* Адаптивность галереи */
+        @media (max-width: 1000px) {
+            .project-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            break-inside: avoid;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .gallery-image {
+            aspect-ratio: 4 / 3;
+            background: #d6cfc6;
+            overflow: hidden;
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.03);
+        }
+
+        .gallery-caption {
+            padding: 0.8rem 1rem 1rem;
+            font-size: 0.95rem;
+            opacity: 0.75;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Альтернативный вариант галереи для большего количества фото */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        /* Опционально: кнопка "показать еще" для фото */
+        .gallery-more {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .gallery-more-btn {
+            background: transparent;
+            border: 2px solid var(--soft-dark);
+            padding: 0.8rem 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--soft-dark);
+        }
+        .gallery-more-btn:hover {
+            background: var(--soft-dark);
+            color: var(--bg);
+        }
+
+        /* Для видео */
+        .gallery-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #d6cfc6;
+        }
+        .gallery-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 800px) {
+            .dynamic-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .photo-sticky {
+                position: static;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .case-item, .case-item.reverse {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .project-meta {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+        }
+
+        button, .case-card-custom, .header .contact-btn, .submit-btn, .contact-form {
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ХЭДЕР с выпадающим списком проектов -->
+    <header class="header">
+        <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+        <label for="burger-toggle" class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="#" class="nav-link" id="main-page-link">главная</a>
+            </div>
+            <div class="nav-item">
+                <span class="nav-link">проекты ▼</span>
+                <div class="dropdown">
+                    <a href="#project-1" class="project-link" data-project="1">Петровский Деревенский Театр</a>
+                    <a href="#project-2" class="project-link" data-project="2">Мерч театра Пушкина</a>
+                    <a href="#project-3" class="project-link" data-project="3">Проект </a>
+                    <a href="#project-4" class="project-link" data-project="4">Проект </a>
+                    <a href="#project-5" class="project-link" data-project="5">Проект </a>
+                </div>
+            </div>
+        </div>
+        
+        <a href="#contact-section" class="contact-btn" id="contact-header">связаться</a>
+
+        <div class="burger-menu">
+            <a href="#" class="main-page-link">главная</a>
+            <div class="projects-group">
+                <span style="font-weight:600; margin-bottom:0.3rem;">проекты:</span>
+                <a href="#project-1" class="project-link" data-project="1">Петровский Деревенский Театр</a>
+                <a href="#project-2" class="project-link" data-project="2">Мерч театра Пушкина</a>
+                <a href="#project-3" class="project-link" data-project="3">Проект </a>
+                <a href="#project-4" class="project-link" data-project="4">Проект </a>
+                <a href="#project-5" class="project-link" data-project="5">Проект </a>
+            </div>
+            <a href="#contact-section" class="contact-btn" id="burger-contact">связаться</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- НАВИГАЦИЯ МЕЖДУ ПРОЕКТАМИ -->
+        <div class="container">
+            <div class="project-nav" id="project-nav">
+                <button class="nav-arrow" id="prevProject" aria-label="Предыдущий проект">←</button>
+                <span class="project-counter" id="projectCounter">1 / 5</span>
+                <button class="nav-arrow" id="nextProject" aria-label="Следующий проект">→</button>
+            </div>
+            <div style="margin-bottom: 1rem;" id="back-link-container">
+                <a href="#" class="back-to-main" id="showAllLink">← ко всем проектам</a>
+            </div>
+        </div>
+
+        <!-- ГЛАВНАЯ СТРАНИЦА -->
+        <div id="main-page" class="main-page">
+            <!-- ДИНАМИЧЕСКИЙ БЛОК: фото + текст -->
+            <div class="container dynamic-row">
+                <div class="photo-sticky">
+                    <figure>
+                        <img src="https://sun9-69.userapi.com/s/v1/ig2/2rEZLbLrU2LLYlHI5LkaSiCIVi-pm3NN15R6jQP7ZSG7G62rWX7F1N4jLplWcF3N0GMJS0LrWZHXxry3xodh5Agw.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x360,360x540,480x720,540x810,640x960,720x1080,1080x1620,1280x1920,1333x2000&from=bu&cs=1333x2000" 
+                             alt="Ксения Смирнова портрет">
+                    </figure>
+                </div>
+
+                <div class="scroll-text">
+                    <div class="info-block" id="contact">
+                        <h1>Смирнова<br>Ксения</h1>
+                        <div class="speciality-badge">
+                            <span>23 года</span>
+                            <span>графический дизайнер</span>
+                            <span>веб-дизайнер</span>
+                            <span>дизайнер мерча</span>
+                        </div>
+                        <div class="contact-icons">
+                            <a href="https://t.me/takoj_vot_chelovek" class="icon-tg">@takoj_vot_chelovek</a>
+                            <a href="tel:+79610185617" class="icon-phone">89610185617</a>
+                            <a href="mailto:smirnovakp2002@gmail.com" class="icon-email">smirnovakp2002@gmail.com</a>
+                            <a href="https://vk.com/k.smirnova_k_svobode" class="icon-vk">vk.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-block" id="directions">
+                        <h3>направления работы</h3>
+                        <ul>
+                            <li>— Фирменный стиль, айдентика, мерч</li>
+                            <li>— Веб-дизайн (Figma, html/css, bootstrap)</li>
+                            <li>— Моушн-дизайн, анимация (After Effects)</li>
+                            <li>— Фотосъёмка, ретушь, вёрстка фотокниг</li>
+                            <li>— Организация выставочных пространств</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block" id="education">
+                        <h3>образование</h3>
+                        <p><strong>СПБГУПТД, 5 курс</strong> (очно-заочная)<br>Прикладная информатика в дизайне</p>
+                        <div style="margin-top: 1.2rem;">
+                            <p><strong>повышение квалификации:</strong><br>
+                            — Театральный институт им. Бориса Щукина<br>
+                            — Академия Меганом (Крым): уличный театр, дизайн мерча</p>
+                        </div>
+                    </div>
+
+                    <div class="info-block" id="experience">
+                        <h3>опыт / проекты</h3>
+                        <ul>
+                            <li>— Айдентика для театра им. Пушкина и Петровского театра</li>
+                            <li>— Съёмка спектаклей реж. Антона Григорьева</li>
+                            <li>— Режиссура короткого метра «Гопник Коля»</li>
+                            <li>— Выпуск фотокниги «Следы»</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>скиллы</h3>
+                        <div class="compact-grid">
+                            <div class="skill-item"><strong>хард:</strong> Figma, Photoshop, Illustrator, InDesign, After Effects, Premiere Pro, HTML/CSS, C++, Python, Git</div>
+                            <div class="skill-item"><strong>софт:</strong> ответственность, исполнительность, насмотренность</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- КЕЙСЫ -->
+            <div class="container cases-showcase" id="cases">
+                <h2>кейсы</h2>
+                
+                <!-- Петровский Деревенский Театр -->
+                <div class="case-item">
+                    <div class="case-info">
+                        <h3>Разработка фирменного стиля для Петровского Деревенского Театра</h3>
+                        <p>В 2024 году в рамках учебной программы я занималась разработкой фирменного стиля для Петровского Деревенского Театра (ПДТ). В ходе проекта были разработаны стандартный и упрощенный логотипы, а также элементы фирменного стиля и паттерны, которые были использованы для оформления внешних носителей, таких как бейджи, визитки, шопперы, афиши, блокноты, а также оформление страницы в ВКонтакте. Итоговый проект был оформлен в виде гайдлайна.</p>
+                        <a href="https://disk.yandex.ru/i/AIr7sADS_PWsEA" target="_blank" class="case-btn">посмотреть</a>
+                    </div>
+                    <div class="case-visual">
+                        <div class="case-card-custom">
+                            <div class="case-image-custom">
+                                <img src="https://sun9-11.userapi.com/s/v1/ig2/9PiQu-kpqCGtjzjyNcakyy0mfdN2wp7KyVQ81eAjFetHy-RfJmOVFOb_cmVQKaXtfVmjRUei0l2rOzspthQSyipe.jpg?quality=95&as=32x30,48x44,72x67,108x100,160x148,240x222,360x333,480x444,540x500,580x537&from=bu&cs=580x0" 
+                                     alt="Носители для Петровского Деревенского Театра">
+                            </div>
+                            <h4>Носители для ПДТ</h4>
+                            <p>Бейджи, визитки, шопперы, афиши, блокноты</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Театр имени Пушкина -->
+                <div class="case-item reverse">
+                    <div class="case-info">
+                        <h3>Разработка коллекции мерча для театра А.С. Пушкина</h3>
+                        <p>В 2024 году была создана концепция лимитированной коллекции мерча, посвященной отдельным спектаклям Московского драматического театра имени А. С. Пушкина. При разработке хотелось уделить внимание знаковым для театра спектаклям и их авторам в современном исполнении. В дизайне была совмещена классическая гравюра по произведениям, современная типографика и винтажный эффект.</p>
+                        <a href="https://disk.yandex.ru/i/e2XlrIV0rgF1hw" target="_blank" class="case-btn">посмотреть</a>
+                    </div>
+                    <div class="case-visual">
+                        <div class="case-card-custom">
+                            <div class="case-image-custom">
+                                <img src="https://sun9-51.userapi.com/s/v1/ig2/tmoqNJxoz_5ybUsUxTCZ4HlJ5MAkQ4DkenJ5aIWkdZTyuQEMEF-MzliJOFHaOfP19Yyt2mIvdHuKn8NzPswfjx2C.jpg?quality=95&as=32x30,48x45,72x67,108x101,160x149,240x223,360x335,480x447,540x503,580x540&from=bu&cs=580x0" 
+                                     alt="Принт для футболки театра Пушкина">
+                            </div>
+                            <h4>Принт для футболки</h4>
+                            <p>Коллекция мерча для театра Пушкина</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="more-link">больше работ →</a>
+            </div>
+
+            <!-- ФОРМА СВЯЗИ -->
+            <div class="container" id="contact-section">
+                <h2>напишите мне</h2>
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">имя</label>
+                                <input type="text" id="name" name="name" placeholder="Анна">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">телефон / telegram</label>
+                                <input type="text" id="contact" name="contact" placeholder="@username или +7">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">сообщение</label>
+                            <textarea id="message" name="message" placeholder="Здравствуйте, хочу обсудить проект..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРОЕКТ 1: Петровский Деревенский Театр (с множеством фото) -->
+        <div id="project-1" class="project-page container">
+            <div class="project-header">
+                <h1>Петровский Деревенский Театр</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова</span></div>
+                <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Петровский Деревенский Театр</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, Figma</span></div>
+            </div>
+            <div class="project-description">
+                <p>Разработка полного фирменного стиля для деревенского театра. Созданы логотип, паттерны, система носителей: бейджи, визитки, шопперы, афиши, блокноты, оформление сообщества ВК. Итогом стал гайдлайн по использованию айдентики.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ С МНОЖЕСТВОМ ФОТО -->
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://sun9-11.userapi.com/s/v1/ig2/9PiQu-kpqCGtjzjyNcakyy0mfdN2wp7KyVQ81eAjFetHy-RfJmOVFOb_cmVQKaXtfVmjRUei0l2rOzspthQSyipe.jpg?quality=95&as=32x30,48x44,72x67,108x100,160x148,240x222,360x333,480x444,540x500,580x537&from=bu&cs=580x0" alt="Логотип ПДТ">
+                    </div>
+                    <div class="gallery-caption">Все носители</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23d2c5b6'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПаттерн 1%3C/text%3E%3C/svg%3E" alt="Паттерн 1">
+                    </div>
+                    <div class="gallery-caption">Основной логотип</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23c7bcaf'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПаттерн 2%3C/text%3E%3C/svg%3E" alt="Паттерн 2">
+                    </div>
+                    <div class="gallery-caption">Орнаментальный паттерн</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b9afa4'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EБейджи%3C/text%3E%3C/svg%3E" alt="Бейджи">
+                    </div>
+                    <div class="gallery-caption">Бейджи для сотрудников</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23aca094'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EВизитки%3C/text%3E%3C/svg%3E" alt="Визитки">
+                    </div>
+                    <div class="gallery-caption">Визитки двухсторонние</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%239e8f81'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EШопперы%3C/text%3E%3C/svg%3E" alt="Шопперы">
+                    </div>
+                    <div class="gallery-caption">Шопперы с паттерном</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23908173'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EАфиши%3C/text%3E%3C/svg%3E" alt="Афиши">
+                    </div>
+                    <div class="gallery-caption">Серия афиш</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23837465'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EБлокноты%3C/text%3E%3C/svg%3E" alt="Блокноты">
+                    </div>
+                    <div class="gallery-caption">Брендированные блокноты</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23756557'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EГайдлайн%3C/text%3E%3C/svg%3E" alt="Гайдлайн">
+                    </div>
+                    <div class="gallery-caption">Страница гайдлайна</div>
+                </div>
+            </div>
+            
+            <!-- Дополнительная секция с видео/анимацией -->
+            <div class="extra-section">
+                <h3>видеопрезентация</h3>
+                <div class="gallery-video">
+                    <video controls poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%235a4f46'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='24' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EВидео презентация ПДТ%3C/text%3E%3C/svg%3E">
+                        <source src="#" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРОЕКТ 2: Мерч театра Пушкина (с множеством фото) -->
+        <div id="project-2" class="project-page container">
+            <div class="project-header">
+                <h1>Коллекция мерча для театра им. Пушкина</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">индивидуальный проект</span></div>
+                <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Театр имени А.С. Пушкина</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, After Effects</span></div>
+            </div>
+            <div class="project-description">
+                <p>Лимитированная коллекция мерча, посвященная знаковым спектаклям. В дизайне совмещена классическая гравюра, современная типографика и винтажные эффекты. Разработаны принты для футболок, толстовок, шопперов и плакатов.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ -->
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="https://sun9-51.userapi.com/s/v1/ig2/tmoqNJxoz_5ybUsUxTCZ4HlJ5MAkQ4DkenJ5aIWkdZTyuQEMEF-MzliJOFHaOfP19Yyt2mIvdHuKn8NzPswfjx2C.jpg?quality=95&as=32x30,48x45,72x67,108x101,160x149,240x223,360x335,480x447,540x503,580x540&from=bu&cs=580x0" alt="Принт Пиковая дама">
+                    </div>
+                    <div class="gallery-caption">Футболка «Аленький цветочек»</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b7a99a'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПринт Евгений Онегин%3C/text%3E%3C/svg%3E" alt="Принт Онегин">
+                    </div>
+                    <div class="gallery-caption">Худи «Евгений Онегин»</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23cbbeb0'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EШоппер%3C/text%3E%3C/svg%3E" alt="Шоппер">
+                    </div>
+                    <div class="gallery-caption">Шоппер с панорамой</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23a59788'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПлакат%3C/text%3E%3C/svg%3E" alt="Плакат">
+                    </div>
+                    <div class="gallery-caption">Плакат коллекции</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23988879'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EЗначок%3C/text%3E%3C/svg%3E" alt="Значок">
+                    </div>
+                    <div class="gallery-caption">Значки с персонажами</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%238a7b6b'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EОткрытки%3C/text%3E%3C/svg%3E" alt="Открытки">
+                    </div>
+                    <div class="gallery-caption">Набор открыток</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРОЕКТ 3: Фотокнига «Следы» -->
+        <div id="project-3" class="project-page container">
+            <div class="project-header">
+                <h1>Фотокнига «Следы»</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2023</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">индивидуальный проект</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Lightroom, InDesign, Photoshop</span></div>
+                <div class="meta-item"><span class="meta-label">материалы</span><span class="meta-value">Munken Polar, мягкий переплет</span></div>
+            </div>
+            <div class="project-description">
+                <p>Авторская фотокнига из серии чёрно-белых снимков, сделанных в малых городах России. Верстка, ретушь, подбор бумаги и печать выполнены лично. Тираж 10 экземпляров.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ -->
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%238d8072'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EОбложка%3C/text%3E%3C/svg%3E" alt="Обложка">
+                    </div>
+                    <div class="gallery-caption">Обложка с тиснением</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%239f9284'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EРазворот 1%3C/text%3E%3C/svg%3E" alt="Разворот 1">
+                    </div>
+                    <div class="gallery-caption">Разворот с городским пейзажем</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b1a495'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EРазворот 2%3C/text%3E%3C/svg%3E" alt="Разворот 2">
+                    </div>
+                    <div class="gallery-caption">Портретная серия</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРОЕКТ 4: Короткий метр «Гопник Коля» -->
+        <div id="project-4" class="project-page container">
+            <div class="project-header">
+                <h1>Короткий метр «Гопник Коля»</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2023</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова, Иван Петров, Павел Соколов</span></div>
+                <div class="meta-item"><span class="meta-label">показы</span><span class="meta-value">Фестиваль «ПитерКино», диплом</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Premiere Pro, After Effects, DaVinci</span></div>
+            </div>
+            <div class="project-description">
+                <p>Режиссура и монтаж короткометражного фильма. Участие в написании сценария, подбор локаций, работа с актерами. Постпродакшн, цветокоррекция, сведение звука.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ С ВИДЕО -->
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%236d6257'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EКадр 1%3C/text%3E%3C/svg%3E" alt="Кадр 1">
+                    </div>
+                    <div class="gallery-caption">Кадр из фильма</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%235a4f44'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EКадр 2%3C/text%3E%3C/svg%3E" alt="Кадр 2">
+                    </div>
+                    <div class="gallery-caption">Сцена в городе</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%234d4237'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EЗа кулисами%3C/text%3E%3C/svg%3E" alt="За кулисами">
+                    </div>
+                    <div class="gallery-caption">Процесс съемок</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="gallery-video" style="aspect-ratio:4/3;">
+                            <video controls poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%233d3329'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EТрейлер%3C/text%3E%3C/svg%3E">
+                                <source src="#" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">Трейлер фильма</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРОЕКТ 5: Выставка «Грани» -->
+        <div id="project-5" class="project-page container">
+            <div class="project-header">
+                <h1>Выставка «Грани»</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова, Мария Лебедева, Алиса Федорова</span></div>
+                <div class="meta-item"><span class="meta-label">площадка</span><span class="meta-value">Молодежный центр «Пространство»</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Figma, Illustrator, Archicad</span></div>
+            </div>
+            <div class="project-description">
+                <p>Разработка концепции выставки молодых художников, зонирование, графическое сопровождение (афиша, навигация, этикетаж). Участие в монтаже и координации.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ -->
+            <div class="project-gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23908173'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EПлан выставки%3C/text%3E%3C/svg%3E" alt="План">
+                    </div>
+                    <div class="gallery-caption">План зонирования</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%239e8d7d'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EОткрытие%3C/text%3E%3C/svg%3E" alt="Открытие">
+                    </div>
+                    <div class="gallery-caption">Фото с открытия</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23837465'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EКаталог%3C/text%3E%3C/svg%3E" alt="Каталог">
+                    </div>
+                    <div class="gallery-caption">Каталог выставки</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%236b5d4f'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EНавигация%3C/text%3E%3C/svg%3E" alt="Навигация">
+                    </div>
+                    <div class="gallery-caption">Система навигации</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%235a4c3e'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EЭтикетаж%3C/text%3E%3C/svg%3E" alt="Этикетаж">
+                    </div>
+                    <div class="gallery-caption">Этикетаж для работ</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%234c3f32'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EАфиша%3C/text%3E%3C/svg%3E" alt="Афиша">
+                    </div>
+                    <div class="gallery-caption">Афиша выставки</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- КНОПКА НАВЕРХ -->
+    <button class="to-top" id="toTopBtn" aria-label="Наверх"></button>
+
+    <!-- ФУТЕР -->
+    <footer class="container">
+        <div>© Смирнова Ксения, <span id="current-year"></span> портфолио</div>
+        <div style="display: flex; gap: 1.5rem;">
+            <a href="https://t.me/takoj_vot_chelovek">тг</a>
+            <a href="mailto:smirnovakp2002@gmail.com">почта</a>
+            <a href="https://vk.com/k.smirnova_k_svobode">вк</a>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Текущий год в футере
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Элементы
+            const mainPage = document.getElementById('main-page');
+            const projectPages = document.querySelectorAll('.project-page');
+            const projectNav = document.getElementById('project-nav');
+            const backLinkContainer = document.getElementById('back-link-container');
+            const counterSpan = document.getElementById('projectCounter');
+            const prevBtn = document.getElementById('prevProject');
+            const nextBtn = document.getElementById('nextProject');
+            const showAllLink = document.getElementById('showAllLink');
+            const toTopBtn = document.getElementById('toTopBtn');
+            
+            const projects = ['project-1', 'project-2', 'project-3', 'project-4', 'project-5'];
+            let currentIndex = 0;
+
+            // Показать главную
+            function showMainPage() {
+                mainPage.classList.remove('hidden');
+                projectPages.forEach(page => page.classList.remove('active'));
+                projectNav.style.display = 'none';
+                backLinkContainer.style.display = 'none';
+                window.location.hash = '';
+            }
+
+            // Показать проект
+            function showProject(index) {
+                if (index < 0) index = projects.length - 1;
+                if (index >= projects.length) index = 0;
+                currentIndex = index;
+
+                mainPage.classList.add('hidden');
+                projectPages.forEach(page => page.classList.remove('active'));
+                document.getElementById(projects[currentIndex]).classList.add('active');
+                
+                projectNav.style.display = 'flex';
+                backLinkContainer.style.display = 'block';
+                counterSpan.textContent = (currentIndex + 1) + ' / ' + projects.length;
+                window.location.hash = projects[currentIndex];
+                
+                // Прокрутка вверх при открытии проекта
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Навигация
+            prevBtn.addEventListener('click', () => showProject(currentIndex - 1));
+            nextBtn.addEventListener('click', () => showProject(currentIndex + 1));
+            
+            showAllLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showMainPage();
+            });
+
+            // Ссылки на проекты
+            document.querySelectorAll('.project-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const projectNum = this.getAttribute('data-project');
+                    if (projectNum) showProject(parseInt(projectNum) - 1);
+                    document.getElementById('burger-toggle').checked = false;
+                });
+            });
+
+            // Главная ссылка
+            document.getElementById('main-page-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showMainPage();
+            });
+            document.querySelectorAll('.main-page-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showMainPage();
+                    document.getElementById('burger-toggle').checked = false;
+                });
+            });
+
+            // Связаться
+            function scrollToContact() {
+                showMainPage();
+                setTimeout(() => {
+                    document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+            document.getElementById('contact-header').addEventListener('click', (e) => {
+                e.preventDefault();
+                scrollToContact();
+            });
+            document.getElementById('burger-contact').addEventListener('click', (e) => {
+                e.preventDefault();
+                scrollToContact();
+                document.getElementById('burger-toggle').checked = false;
+            });
+
+            // Кнопка наверх
+            toTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Якорные ссылки на главной
+            document.querySelectorAll('#main-page a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                        document.getElementById('burger-toggle').checked = false;
+                    }
+                });
+            });
+
+            // Инициализация по hash
+            const hash = window.location.hash.substring(1);
+            if (hash && hash.startsWith('project-')) {
+                const index = projects.indexOf(hash);
+                if (index !== -1) showProject(index);
+                else showMainPage();
+            } else {
+                showMainPage();
+            }
+
+            // Форма
+            const form = document.querySelector('.contact-form form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Спасибо! Сообщение отправлено (демо).');
+                    form.reset();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
