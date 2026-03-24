@@ -13,32 +13,7 @@
         });
     }
 
-    // Связаться - плавный скролл
-    const contactHeader = document.getElementById('contact-header');
-    const burgerContact = document.getElementById('burger-contact');
-    
-    function scrollToContact() {
-        const contactSection = document.getElementById('contact-section');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-    
-    if (contactHeader) {
-        contactHeader.addEventListener('click', (e) => {
-            e.preventDefault();
-            scrollToContact();
-        });
-    }
-    
-    if (burgerContact) {
-        burgerContact.addEventListener('click', (e) => {
-            e.preventDefault();
-            scrollToContact();
-            const burgerToggle = document.getElementById('burger-toggle');
-            if (burgerToggle) burgerToggle.checked = false;
-        });
-    }
+
 
     // Форма обратной связи
     const contactForm = document.getElementById('contact-form');

@@ -14,218 +14,7 @@
     <link rel="stylesheet" href="../css/responsive.css">
     
     <style>
-        /* Стили для модального окна галереи */
-        .modal-gallery {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal-gallery.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-        
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-image {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .modal-caption {
-            position: absolute;
-            bottom: -40px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            font-size: 1rem;
-            padding: 0.5rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 4px;
-        }
-        
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            z-index: 2001;
-        }
-        
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: white;
-        }
-        
-        .prev-btn {
-            left: 20px;
-        }
-        
-        .next-btn {
-            right: 20px;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            z-index: 2001;
-            transition: all 0.3s ease;
-            background: none;
-            border: none;
-            font-family: monospace;
-        }
-        
-        .close-btn:hover {
-            color: #9e6b5e;
-            transform: scale(1.1);
-        }
-        
-        .counter {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-family: monospace;
-        }
-        
-        .gallery-image {
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .gallery-image::after {
-            content: "🔍";
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 5px 8px;
-            border-radius: 50%;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .gallery-image:hover::after {
-            opacity: 1;
-        }
-        
-        /* Дополнительные стили для PDF просмотрщика */
-        .pdf-container {
-            width: 100%;
-            margin: 2rem 0;
-            background: #f5f3f0;
-            border: 1px solid var(--border-light);
-            overflow: hidden;
-        }
-        
-        .pdf-container iframe {
-            width: 100%;
-            height: 800px;
-            border: none;
-            display: block;
-        }
-        
-        .pdf-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 2rem;
-            background: var(--soft-dark);
-            color: var(--bg);
-            text-decoration: none;
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .pdf-link:hover {
-            background: var(--accent);
-            border-bottom: none;
-        }
-        
-        @media (max-width: 800px) {
-            .pdf-container iframe {
-                height: 500px;
-            }
-            
-            .nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            
-            .prev-btn {
-                left: 10px;
-            }
-            
-            .next-btn {
-                right: 10px;
-            }
-            
-            .close-btn {
-                top: 10px;
-                right: 15px;
-                font-size: 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .pdf-container iframe {
-                height: 400px;
-            }
-            
-            .nav-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-            }
-        }
+
     </style>
 </head>
 <body>
@@ -247,26 +36,26 @@
                 <div class="dropdown">
                     <a href="project-1.html">Петровский Деревенский Театр</a>
                     <a href="project-2.html">Мерч театра Пушкина</a>
-                    <a href="project-3.html">Фотокнига «Следы»</a>
-                    <a href="project-4.html">Короткий метр «Гопник Коля»</a>
-                    <a href="project-5.html">Выставка «Грани»</a>
+                    <a href="project-3.html">Мерч театра Пушкина-лимитированная коллекция</a>
+                    <a href="project-4.html">Мерч для проекта "Голос малых городов"</a>
+                    <a href="project-5.html"></a>
                 </div>
             </div>
         </div>
         
-        <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+        <a href="https://vk.com/k.smirnova_k_svobode" class="contact-btn">связаться</a>
 
         <div class="burger-menu">
             <a href="../index.html">главная</a>
             <div class="projects-group">
                 <span style="font-weight:600; margin-bottom:0.3rem;">проекты:</span>
-                <a href="project-1.html">Петровский Деревенский Театр</a>
-                <a href="project-2.html">Мерч театра Пушкина</a>
-                <a href="project-3.html">Фотокнига «Следы»</a>
-                <a href="project-4.html">Короткий метр «Гопник Коля»</a>
-                <a href="project-5.html">Выставка «Грани»</a>
+					<a href="project-1.html">Петровский Деревенский Театр</a>
+					<a href="project-2.html">Мерч театра Пушкина</a>
+					<a href="project-3.html">Мерч театра Пушкина-лимитированная коллекция</a>
+					<a href="project-4.html">Мерч для проекта "Голос малых городов"</a>
+					<a href="project-5.html"></a>
             </div>
-            <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+            <a href="https://vk.com/k.smirnova_k_svobode" class="contact-btn">связаться</a>
         </div>
     </header>
 
@@ -290,7 +79,7 @@
                 <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
                 <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова</span></div>
                 <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Петровский Деревенский Театр</span></div>
-                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, Figma</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, Figma, InDesign</span></div>
             </div>
             <div class="project-description">
                 <p>Разработка полного фирменного стиля для деревенского театра. Созданы логотип, паттерны, система носителей: бейджи, визитки, шопперы, афиши, блокноты, оформление сообщества ВК. Итогом стал гайдлайн по использованию айдентики.</p>
@@ -300,58 +89,59 @@
             <div class="project-gallery" id="project-gallery">
                 <div class="gallery-item" data-index="0">
                     <div class="gallery-image">
-                        <img src="https://sun9-11.userapi.com/s/v1/ig2/9PiQu-kpqCGtjzjyNcakyy0mfdN2wp7KyVQ81eAjFetHy-RfJmOVFOb_cmVQKaXtfVmjRUei0l2rOzspthQSyipe.jpg?quality=95&as=32x30,48x44,72x67,108x100,160x148,240x222,360x333,480x444,540x500,580x537&from=bu&cs=580x0" alt="Все носители">
+                        <img src="../img/project-1/1 (2).png" alt="Все носители">
                     </div>
                     <div class="gallery-caption">Все носители</div>
                 </div>
                 <div class="gallery-item" data-index="1">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23d2c5b6'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EОсновной логотип%3C/text%3E%3C/svg%3E" alt="Основной логотип">
+						<img src="../img/project-1/логотип.png" alt="Все носители">
                     </div>
                     <div class="gallery-caption">Основной логотип</div>
                 </div>
                 <div class="gallery-item" data-index="2">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23c7bcaf'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EОрнаментальный паттерн%3C/text%3E%3C/svg%3E" alt="Орнаментальный паттерн">
+                        <img src="../img/project-1/лого мин.png" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Орнаментальный паттерн</div>
+                    <div class="gallery-caption">Упрощенный логотип</div>
                 </div>
-                <div class="gallery-item" data-index="3">
+				<div class="gallery-item" data-index="3">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b9afa4'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EБейджи%3C/text%3E%3C/svg%3E" alt="Бейджи">
+                        <img src="../img/project-1/бейдж мокапMockup.png" alt="Все носители">
                     </div>
                     <div class="gallery-caption">Бейджи для сотрудников</div>
                 </div>
                 <div class="gallery-item" data-index="4">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23aca094'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EВизитки%3C/text%3E%3C/svg%3E" alt="Визитки">
+                        <img src="../img/project-1/мокап визитки.png" alt="Все носители">
                     </div>
                     <div class="gallery-caption">Визитки двухсторонние</div>
                 </div>
-                <div class="gallery-item" data-index="5">
+				<div class="gallery-item" data-index="5">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%239e8f81'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EШопперы%3C/text%3E%3C/svg%3E" alt="Шопперы">
+                        <img src="../img/project-1/photo_2025-01-12_01-59-02.jpg" alt="Все носители">
                     </div>
                     <div class="gallery-caption">Шопперы с паттерном</div>
                 </div>
-                <div class="gallery-item" data-index="6">
+				<div class="gallery-item" data-index="6">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23908173'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EАфиши%3C/text%3E%3C/svg%3E" alt="Афиши">
+                        <img src="../img/project-1/блокнот.png" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Серия афиш</div>
-                </div>
-                <div class="gallery-item" data-index="7">
+                    <div class="gallery-caption">Блокнот</div>
+                </div>				
+				<div class="gallery-item" data-index="7">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23837465'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EБлокноты%3C/text%3E%3C/svg%3E" alt="Блокноты">
+                        <img src="../img/project-1/плакат мокап.png" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Брендированные блокноты</div>
-                </div>
-                <div class="gallery-item" data-index="8">
+                    <div class="gallery-caption">Афиша</div>
+                </div>	
+				<div class="gallery-item" data-index="8">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23756557'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EГайдлайн%3C/text%3E%3C/svg%3E" alt="Гайдлайн">
+                        <img src="../img/project-1/вк-мокап.png" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Страница гайдлайна</div>
-                </div>
+                    <div class="gallery-caption">Оформление сообщества ВК</div>
+                </div>				
+
             </div>
             
             <!-- Модальное окно для галереи -->

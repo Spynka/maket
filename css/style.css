@@ -331,7 +331,7 @@ img {
 }
 
 .icon-tg::before {
-    content: "⎆";
+    content: "⌲";
     margin-right: 6px;
     font-weight: 300;
 }
@@ -342,7 +342,7 @@ img {
 }
 
 .icon-email::before {
-    content: "⌲";
+    content: "⎆";
     margin-right: 6px;
 }
 
@@ -714,14 +714,16 @@ button,
 
 .gallery-image {
     aspect-ratio: 4 / 3;
-    background: #d6cfc6;
+    background: transparent;   /* прозрачный фон */
     overflow: hidden;
+    cursor: pointer;
+    position: relative;
 }
 
 .gallery-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;        /* растягивание фото */
     transition: transform 0.4s ease;
 }
 
@@ -748,7 +750,7 @@ button,
     object-fit: cover;
 }
 
-/* ===== МОДАЛЬНОЕ ОКНО ДЛЯ ГАЛЕРЕИ ===== */
+/* ===== МОДАЛЬНОЕ ОКНО (тёмное) ===== */
 .modal-gallery {
     display: none;
     position: fixed;
@@ -863,47 +865,54 @@ button,
     font-family: monospace;
 }
 
-.gallery-image {
-    cursor: pointer;
-    position: relative;
+/* ===== PDF-БЛОК ===== */
+.pdf-container {
+    width: 100%;
+    margin: 2rem 0;
+    background: #f5f3f0;
+    border: 1px solid var(--border-light);
     overflow: hidden;
 }
 
-.gallery-image::after {
-    content: "🔍";
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 5px 8px;
-    border-radius: 50%;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+.pdf-container iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+    display: block;
 }
 
-.gallery-image:hover::after {
-    opacity: 1;
+.pdf-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    background: var(--soft-dark);
+    color: var(--bg);
+    text-decoration: none;
+    transition: var(--transition);
+    text-align: center;
 }
 
-/* Адаптация для мобильных */
+.pdf-link:hover {
+    background: var(--accent);
+    border-bottom: none;
+}
+
+/* ===== АДАПТАЦИЯ ===== */
 @media (max-width: 800px) {
+    .pdf-container iframe {
+        height: 500px;
+    }
     .nav-btn {
         width: 40px;
         height: 40px;
         font-size: 20px;
     }
-    
     .prev-btn {
         left: 10px;
     }
-    
     .next-btn {
         right: 10px;
     }
-    
     .close-btn {
         top: 10px;
         right: 15px;
@@ -912,6 +921,9 @@ button,
 }
 
 @media (max-width: 480px) {
+    .pdf-container iframe {
+        height: 400px;
+    }
     .nav-btn {
         width: 35px;
         height: 35px;
