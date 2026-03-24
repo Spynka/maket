@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Петровский Деревенский Театр · Ксения Смирнова</title>
+
+    <!-- Профессиональная типографика -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/satoshi@latest/css/satoshi.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.8/css/space-grotesk.min.css">
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+        /* Стили для модального окна галереи */
+        .modal-gallery {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-gallery.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1rem;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 4px;
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 2001;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: white;
+        }
+        
+        .prev-btn {
+            left: 20px;
+        }
+        
+        .next-btn {
+            right: 20px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            font-family: monospace;
+        }
+        
+        .close-btn:hover {
+            color: #9e6b5e;
+            transform: scale(1.1);
+        }
+        
+        .counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: monospace;
+        }
+        
+        .gallery-image {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-image::after {
+            content: "🔍";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 8px;
+            border-radius: 50%;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .gallery-image:hover::after {
+            opacity: 1;
+        }
+        
+        /* Дополнительные стили для PDF просмотрщика */
+        .pdf-container {
+            width: 100%;
+            margin: 2rem 0;
+            background: #f5f3f0;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+        
+        .pdf-container iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            display: block;
+        }
+        
+        .pdf-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: var(--soft-dark);
+            color: var(--bg);
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .pdf-link:hover {
+            background: var(--accent);
+            border-bottom: none;
+        }
+        
+        @media (max-width: 800px) {
+            .pdf-container iframe {
+                height: 500px;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .prev-btn {
+                left: 10px;
+            }
+            
+            .next-btn {
+                right: 10px;
+            }
+            
+            .close-btn {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pdf-container iframe {
+                height: 400px;
+            }
+            
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ХЭДЕР с выпадающим списком проектов -->
+    <header class="header">
+        <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+        <label for="burger-toggle" class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html" class="nav-link">главная</a>
+            </div>
+            <div class="nav-item">
+                <span class="nav-link">проекты ▼</span>
+                <div class="dropdown">
+                    <a href="project-1.html">Петровский Деревенский Театр</a>
+                    <a href="project-2.html">Мерч театра Пушкина</a>
+                    <a href="project-3.html">Фотокнига «Следы»</a>
+                    <a href="project-4.html">Короткий метр «Гопник Коля»</a>
+                    <a href="project-5.html">Выставка «Грани»</a>
+                </div>
+            </div>
+        </div>
+        
+        <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+
+        <div class="burger-menu">
+            <a href="../index.html">главная</a>
+            <div class="projects-group">
+                <span style="font-weight:600; margin-bottom:0.3rem;">проекты:</span>
+                <a href="project-1.html">Петровский Деревенский Театр</a>
+                <a href="project-2.html">Мерч театра Пушкина</a>
+                <a href="project-3.html">Фотокнига «Следы»</a>
+                <a href="project-4.html">Короткий метр «Гопник Коля»</a>
+                <a href="project-5.html">Выставка «Грани»</a>
+            </div>
+            <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- НАВИГАЦИЯ МЕЖДУ ПРОЕКТАМИ -->
+            <div class="project-nav" id="project-nav">
+                <button class="nav-arrow" id="prevProject" aria-label="Предыдущий проект">←</button>
+                <span class="project-counter" id="projectCounter">1 / 5</span>
+                <button class="nav-arrow" id="nextProject" aria-label="Следующий проект">→</button>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <a href="../index.html" class="back-to-main">← ко всем проектам</a>
+            </div>
+
+            <!-- КОНТЕНТ ПРОЕКТА -->
+            <div class="project-header">
+                <h1>Петровский Деревенский Театр</h1>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова</span></div>
+                <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Петровский Деревенский Театр</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, Figma</span></div>
+            </div>
+            <div class="project-description">
+                <p>Разработка полного фирменного стиля для деревенского театра. Созданы логотип, паттерны, система носителей: бейджи, визитки, шопперы, афиши, блокноты, оформление сообщества ВК. Итогом стал гайдлайн по использованию айдентики.</p>
+            </div>
+            
+            <!-- ГАЛЕРЕЯ -->
+            <div class="project-gallery" id="project-gallery">
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="https://sun9-11.userapi.com/s/v1/ig2/9PiQu-kpqCGtjzjyNcakyy0mfdN2wp7KyVQ81eAjFetHy-RfJmOVFOb_cmVQKaXtfVmjRUei0l2rOzspthQSyipe.jpg?quality=95&as=32x30,48x44,72x67,108x100,160x148,240x222,360x333,480x444,540x500,580x537&from=bu&cs=580x0" alt="Все носители">
+                    </div>
+                    <div class="gallery-caption">Все носители</div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23d2c5b6'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EОсновной логотип%3C/text%3E%3C/svg%3E" alt="Основной логотип">
+                    </div>
+                    <div class="gallery-caption">Основной логотип</div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23c7bcaf'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EОрнаментальный паттерн%3C/text%3E%3C/svg%3E" alt="Орнаментальный паттерн">
+                    </div>
+                    <div class="gallery-caption">Орнаментальный паттерн</div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b9afa4'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EБейджи%3C/text%3E%3C/svg%3E" alt="Бейджи">
+                    </div>
+                    <div class="gallery-caption">Бейджи для сотрудников</div>
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23aca094'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EВизитки%3C/text%3E%3C/svg%3E" alt="Визитки">
+                    </div>
+                    <div class="gallery-caption">Визитки двухсторонние</div>
+                </div>
+                <div class="gallery-item" data-index="5">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%239e8f81'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EШопперы%3C/text%3E%3C/svg%3E" alt="Шопперы">
+                    </div>
+                    <div class="gallery-caption">Шопперы с паттерном</div>
+                </div>
+                <div class="gallery-item" data-index="6">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23908173'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EАфиши%3C/text%3E%3C/svg%3E" alt="Афиши">
+                    </div>
+                    <div class="gallery-caption">Серия афиш</div>
+                </div>
+                <div class="gallery-item" data-index="7">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23837465'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EБлокноты%3C/text%3E%3C/svg%3E" alt="Блокноты">
+                    </div>
+                    <div class="gallery-caption">Брендированные блокноты</div>
+                </div>
+                <div class="gallery-item" data-index="8">
+                    <div class="gallery-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23756557'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EГайдлайн%3C/text%3E%3C/svg%3E" alt="Гайдлайн">
+                    </div>
+                    <div class="gallery-caption">Страница гайдлайна</div>
+                </div>
+            </div>
+            
+            <!-- Модальное окно для галереи -->
+            <div id="modalGallery" class="modal-gallery">
+                <button class="close-btn">&times;</button>
+                <button class="nav-btn prev-btn">‹</button>
+                <button class="nav-btn next-btn">›</button>
+                <div class="modal-content">
+                    <img class="modal-image" src="" alt="">
+                    <div class="modal-caption"></div>
+                </div>
+                <div class="counter"></div>
+            </div>
+            
+            <!-- Дополнительная секция с PDF просмотрщиком -->
+            <div class="extra-section">
+                <h3>Гайдлайн проекта</h3>
+                <p style="margin-top: 1rem; color: var(--soft-dark);">
+                    Полный гайдлайн по фирменному стилю Петровского Деревенского Театра. Включает описание логотипа, цветовую палитру, типографику, паттерны и правила использования на различных носителях.
+                </p>
+                <a href="https://flypdf.ru/v/2be8ea11-fe06-4a47-a068-ea5fc903fe31" target="_blank" class="pdf-link" rel="nofollow">
+                    Открыть в полноэкранном режиме →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- КНОПКА НАВЕРХ -->
+    <button class="to-top" id="toTopBtn" aria-label="Наверх"></button>
+
+    <!-- ФУТЕР -->
+    <footer class="container">
+        <div>© Смирнова Ксения, <span id="current-year"></span> портфолио</div>
+        <div style="display: flex; gap: 1.5rem;">
+            <a href="https://t.me/takoj_vot_chelovek">тг</a>
+            <a href="mailto:smirnovakp2002@gmail.com">почта</a>
+            <a href="https://vk.com/k.smirnova_k_svobode">вк</a>
+        </div>
+    </footer>
+
+    <script src="../js/projects.js"></script>
+</body>
+</html>

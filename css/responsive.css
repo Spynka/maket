@@ -1,0 +1,472 @@
+/* Адаптация для больших экранов (1920px и выше) */
+@media (min-width: 1920px) {
+    body {
+        padding-top: 90px;
+    }
+    
+    .container {
+        padding: 0 8vw;
+    }
+    
+    .header {
+        padding: 1.2rem 8vw;
+    }
+    
+    .dynamic-row {
+        gap: 8%;
+    }
+    
+    .photo-sticky {
+        flex: 0 0 42%;
+        top: 110px;
+    }
+    
+    .photo-sticky figure {
+        max-width: 750px;
+    }
+    
+    .scroll-text {
+        max-width: 1100px;
+        gap: 5rem;
+    }
+    
+    .info-block h3 {
+        font-size: 2.4rem;
+    }
+    
+    .info-block li,
+    .info-block p {
+        font-size: 1.3rem;
+    }
+    
+    .speciality-badge span {
+        font-size: 1.5rem;
+    }
+    
+    .contact-icons a {
+        font-size: 1.5rem;
+    }
+    
+    .case-item {
+        gap: 8rem;
+        margin-bottom: 8rem;
+    }
+    
+    .case-info h3 {
+        font-size: 2.8rem;
+    }
+    
+    .case-info p {
+        font-size: 1.3rem;
+    }
+    
+    .compact-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .skill-item {
+        font-size: 1.3rem;
+    }
+    
+    .contact-section-wrapper h2 {
+        margin-left: 8vw;
+    }
+    
+    .contact-form {
+        padding: 4rem 8vw;
+    }
+}
+
+/* Специальные настройки для ультрашироких мониторов (2560px+) */
+@media (min-width: 2560px) {
+    body {
+        padding-top: 100px;
+    }
+    
+    .container {
+        padding: 0 12vw;
+    }
+    
+    .header {
+        padding: 1.5rem 12vw;
+    }
+    
+    .dynamic-row {
+        gap: 10%;
+    }
+    
+    .photo-sticky {
+        flex: 0 0 40%;
+        top: 120px;
+    }
+    
+    .photo-sticky figure {
+        max-width: 900px;
+    }
+    
+    .scroll-text {
+        max-width: 1400px;
+        gap: 6rem;
+    }
+    
+    .info-block h3 {
+        font-size: 3rem;
+    }
+    
+    .info-block li,
+    .info-block p {
+        font-size: 1.5rem;
+    }
+    
+    .speciality-badge {
+        gap: 1.5rem 3rem;
+    }
+    
+    .speciality-badge span {
+        font-size: 1.6rem;
+    }
+    
+    .contact-icons {
+        gap: 2rem 3rem;
+    }
+    
+    .contact-icons a {
+        font-size: 1.6rem;
+    }
+    
+    .case-item {
+        gap: 10rem;
+        margin-bottom: 10rem;
+    }
+    
+    .case-info h3 {
+        font-size: 3.2rem;
+    }
+    
+    .case-info p {
+        font-size: 1.5rem;
+    }
+    
+    .case-card-custom h4 {
+        font-size: 1.8rem;
+    }
+    
+    .case-card-custom p {
+        font-size: 1.2rem;
+    }
+    
+    .compact-grid {
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        gap: 3rem;
+    }
+    
+    .skill-item {
+        font-size: 1.5rem;
+        padding-left: 1.5rem;
+    }
+    
+    .contact-section-wrapper h2 {
+        margin-left: 12vw;
+    }
+    
+    .contact-form {
+        padding: 5rem 12vw;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 1.2rem 1.5rem;
+        font-size: 1.3rem;
+    }
+    
+    .submit-btn {
+        padding: 1.2rem 3rem;
+        font-size: 1.3rem;
+    }
+    
+    .project-gallery {
+        gap: 2rem;
+    }
+    
+    .gallery-caption {
+        font-size: 1.1rem;
+    }
+}
+
+/* Адаптация для экранов от 1440px до 1919px */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .container {
+        padding: 0 5vw;
+    }
+    
+    .scroll-text {
+        max-width: 800px;
+    }
+    
+    .photo-sticky {
+        flex: 0 0 45%;
+    }
+    
+    .photo-sticky figure {
+        max-width: 550px;
+    }
+}
+
+/* Адаптация для планшетов и ноутбуков */
+@media (max-width: 1200px) {
+    .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .case-item {
+        gap: 3rem;
+    }
+    
+    .case-info h3 {
+        font-size: 1.8rem;
+    }
+    
+    .scroll-text {
+        max-width: 100%;
+    }
+    
+    .photo-sticky {
+        flex: 0 0 48%;
+    }
+    
+    .photo-sticky figure {
+        max-width: 500px;
+    }
+}
+
+/* Адаптация для мобильных устройств и планшетов */
+@media (max-width: 800px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .container {
+        padding: 0 4vw;
+    }
+    
+    .dynamic-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .photo-sticky {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        flex: 1 1 auto;
+    }
+    
+    .photo-sticky figure {
+        max-width: 100%;
+        margin: 0 auto;
+        aspect-ratio: 0.9 / 1;
+    }
+    
+    .case-item,
+    .case-item.reverse {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .project-meta {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    
+    .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-section-wrapper h2 {
+        margin-left: 4vw;
+    }
+    
+    .contact-form {
+        padding: 2rem 4vw;
+    }
+    
+    .form-inner-container {
+        max-width: 100%;
+    }
+}
+
+/* Адаптация для мобильных телефонов */
+@media (max-width: 700px) {
+    body {
+        padding-top: 65px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .burger-icon {
+        display: flex;
+    }
+    
+    .burger-checkbox:checked ~ .burger-menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        border-bottom: 2px solid var(--soft-dark);
+        padding: 1.5rem 6vw;
+        gap: 1rem;
+        z-index: 1000;
+        font-size: 1rem;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+        background: rgba(245, 243, 240, 0.98);
+    }
+    
+    .burger-menu a {
+        border-bottom: none;
+        padding: 0.5rem 0;
+    }
+    
+    .burger-menu .projects-group {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+        gap: 0.5rem;
+        text-transform: none;
+        font-size: 0.95rem;
+        border-left: 2px solid var(--border-light);
+        padding-left: 1rem;
+    }
+    
+    .burger-menu a:hover {
+        border-bottom: 1px solid var(--soft-dark);
+    }
+    
+    .burger-menu .contact-btn {
+        display: inline-block;
+        background: var(--soft-dark);
+        color: var(--bg);
+        padding: 0.7rem 1.5rem;
+        margin-top: 0.5rem;
+        text-align: center;
+        border: none;
+        width: fit-content;
+    }
+    
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-icons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .speciality-badge {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .compact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-block h3 {
+        font-size: 1.5rem;
+    }
+    
+    .case-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-section-wrapper h2 {
+        margin-left: 4vw;
+    }
+    
+    .contact-form {
+        padding: 1.5rem 4vw;
+    }
+    
+    footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Адаптация для очень маленьких экранов */
+@media (max-width: 480px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .header {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .case-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .nav-arrow {
+        padding: 0.3rem 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .project-meta {
+        padding: 1rem;
+    }
+    
+    .extra-section {
+        padding-left: 1rem;
+    }
+    
+    .contact-section-wrapper h2 {
+        margin-left: 1.5rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+    }
+}
