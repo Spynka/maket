@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Мерч театра Пушкина · Ксения Смирнова</title>
+    <title>Ксения Смирнова</title>
 
+    <!-- Профессиональная типографика -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/satoshi@latest/css/satoshi.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.8/css/space-grotesk.min.css">
+
+    <!-- Основные стили -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+
+    </style>
 </head>
 <body>
+    <!-- ХЭДЕР с выпадающим списком проектов -->
     <header class="header">
         <input type="checkbox" id="burger-toggle" class="burger-checkbox">
         <label for="burger-toggle" class="burger-icon">
@@ -28,90 +36,142 @@
                 <div class="dropdown">
                     <a href="project-1.html">Петровский Деревенский Театр</a>
                     <a href="project-2.html">Мерч театра Пушкина</a>
-                    <a href="project-3.html">Фотокнига «Следы»</a>
-                    <a href="project-4.html">Короткий метр «Гопник Коля»</a>
-                    <a href="project-5.html">Выставка «Грани»</a>
+                    <a href="project-3.html">Мерч театра Пушкина - Лимитированная коллекция</a>
+                    <a href="project-4.html">Мерч для проекта "Голос малых городов"</a>
+                    <a href="project-5.html"></a>
                 </div>
             </div>
         </div>
         
-        <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+        <a href="https://vk.com/k.smirnova_k_svobode" class="contact-btn">связаться</a>
 
         <div class="burger-menu">
             <a href="../index.html">главная</a>
             <div class="projects-group">
                 <span style="font-weight:600; margin-bottom:0.3rem;">проекты:</span>
-                <a href="project-1.html">Петровский Деревенский Театр</a>
-                <a href="project-2.html">Мерч театра Пушкина</a>
-                <a href="project-3.html">Фотокнига «Следы»</a>
-                <a href="project-4.html">Короткий метр «Гопник Коля»</a>
-                <a href="project-5.html">Выставка «Грани»</a>
+					<a href="project-1.html">Петровский Деревенский Театр</a>
+					<a href="project-2.html">Мерч театра Пушкина</a>
+					<a href="project-3.html">Мерч театра Пушкина - Лимитированная коллекция</a>
+					<a href="project-4.html">Мерч для проекта "Голос малых городов"</a>
+					<a href="project-5.html"></a>
             </div>
-            <a href="../index.html#contact-section" class="contact-btn">связаться</a>
+            <a href="https://vk.com/k.smirnova_k_svobode" class="contact-btn">связаться</a>
         </div>
     </header>
 
     <main>
         <div class="container">
+            <!-- НАВИГАЦИЯ МЕЖДУ ПРОЕКТАМИ -->
             <div class="project-nav" id="project-nav">
                 <button class="nav-arrow" id="prevProject" aria-label="Предыдущий проект">←</button>
-                <span class="project-counter" id="projectCounter">2 / 5</span>
+                <span class="project-counter" id="projectCounter">1 / 5</span>
                 <button class="nav-arrow" id="nextProject" aria-label="Следующий проект">→</button>
             </div>
             <div style="margin-bottom: 1rem;">
                 <a href="../index.html" class="back-to-main">← ко всем проектам</a>
             </div>
 
+            <!-- КОНТЕНТ ПРОЕКТА -->
             <div class="project-header">
                 <h1>Коллекция мерча для театра им. Пушкина</h1>
             </div>
             <div class="project-meta">
                 <div class="meta-item"><span class="meta-label">год</span><span class="meta-value">2024</span></div>
-                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">индивидуальный проект</span></div>
-                <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Театр имени А.С. Пушкина</span></div>
-                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, After Effects</span></div>
+                <div class="meta-item"><span class="meta-label">участники</span><span class="meta-value">Ксения Смирнова, Еремина Дарья, Долинская Дарья, Гренадерова Каролина</span></div>
+                <div class="meta-item"><span class="meta-label">заказчик</span><span class="meta-value">Таврида.Арт</span></div>
+                <div class="meta-item"><span class="meta-label">инструменты</span><span class="meta-value">Illustrator, Photoshop, Figma</span></div>
             </div>
             <div class="project-description">
-                <p>Лимитированная коллекция мерча, посвященная знаковым спектаклям. В дизайне совмещена классическая гравюра, современная типографика и винтажные эффекты. Разработаны принты для футболок, толстовок, шопперов и плакатов.</p>
-            </div>
+<p>
+    <strong>Задача:</strong> подготовить предложение современной 
+и свежей концепции мерча для Московского 
+драматического театра имени А. С. Пушкина. <br>
+    <strong>Концепция:</strong> 
+вошедшая в народ фраза:
+«А это Пушкин за тебя делать будет?»
+</p>       
+</div>
             
-            <div class="project-gallery">
-                <div class="gallery-item">
+            <!-- ГАЛЕРЕЯ -->
+            <div class="project-gallery" id="project-gallery">
+                <div class="gallery-item" data-index="0">
                     <div class="gallery-image">
-                        <img src="https://sun9-51.userapi.com/s/v1/ig2/tmoqNJxoz_5ybUsUxTCZ4HlJ5MAkQ4DkenJ5aIWkdZTyuQEMEF-MzliJOFHaOfP19Yyt2mIvdHuKn8NzPswfjx2C.jpg?quality=95&as=32x30,48x45,72x67,108x101,160x149,240x223,360x335,480x447,540x503,580x540&from=bu&cs=580x0" alt="Принт Аленький цветочек">
+                        <img src="../img/proiect-2/img951.jpg" alt="">
                     </div>
-                    <div class="gallery-caption">Футболка «Аленький цветочек»</div>
+                    <div class="gallery-caption">Худи</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-index="1">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b7a99a'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПринт Евгений Онегин%3C/text%3E%3C/svg%3E" alt="Принт Онегин">
+						<img src="../img/proiect-2/img991.jpg" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Худи «Евгений Онегин»</div>
+                    <div class="gallery-caption">Шоппер</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-index="2">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23cbbeb0'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EШоппер%3C/text%3E%3C/svg%3E" alt="Шоппер">
+                        <img src="../img/proiect-2/img995.jpg" alt="Все носители">
                     </div>
-                    <div class="gallery-caption">Шоппер с панорамой</div>
+                    <div class="gallery-caption">Шоппер</div>
                 </div>
-                <div class="gallery-item">
+				 <div class="gallery-item" data-index="0">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23a59788'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EПлакат%3C/text%3E%3C/svg%3E" alt="Плакат">
+                        <img src="../img/proiect-2/img1039.jpg" alt="">
                     </div>
-                    <div class="gallery-caption">Плакат коллекции</div>
+                    <div class="gallery-caption">Закладка</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-index="0">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23988879'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%232b2825' text-anchor='middle' dy='.3em'%3EЗначок%3C/text%3E%3C/svg%3E" alt="Значок">
+                        <img src="../img/proiect-2/img1085.jpg" alt="">
                     </div>
-                    <div class="gallery-caption">Значки с персонажами</div>
+                    <div class="gallery-caption">Футболка</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-index="0">
                     <div class="gallery-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%238a7b6b'/%3E%3Ctext x='50%' y='50%' font-family='Satoshi' font-size='18' fill='%23f5f3f0' text-anchor='middle' dy='.3em'%3EОткрытки%3C/text%3E%3C/svg%3E" alt="Открытки">
+                        <img src="../img/proiect-2/img1129.jpg" alt="">
                     </div>
-                    <div class="gallery-caption">Набор открыток</div>
+                    <div class="gallery-caption">Наклейки</div>
                 </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1185.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Кепка</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1227.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Ежедневник</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1231.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Ежедневник</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1279.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Маска для сна</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1325.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Чайная пара</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1393.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Наклейка на телефон</div>
+                </div>
+                <div class="gallery-item" data-index="0">
+                    <div class="gallery-image">
+                        <img src="../img/proiect-2/img1401.jpg" alt="">
+                    </div>
+                    <div class="gallery-caption">Открытки</div>
+                </div>				
             </div>
             
             <!-- Модальное окно для галереи -->
@@ -125,11 +185,25 @@
                 </div>
                 <div class="counter"></div>
             </div>
+            
+            <!-- Дополнительная секция с PDF просмотрщиком -->
+            <div class="extra-section">
+                <h3>Презентация проекта</h3>
+                <p style="margin-top: 1rem; color: var(--soft-dark);">
+                    Презентация с мокапами лимитированный коллекции.
+                </p>
+                <a href="https://flypdf.ru/v/c2a68051-7ed8-4780-a237-42da5ff86b8b" target="_blank" class="pdf-link" rel="nofollow">
+                    Открыть в полноэкранном режиме →
+                </a>
+				
+            </div>
         </div>
     </main>
 
+    <!-- КНОПКА НАВЕРХ -->
     <button class="to-top" id="toTopBtn" aria-label="Наверх"></button>
 
+    <!-- ФУТЕР -->
     <footer class="container">
         <div>© Смирнова Ксения, <span id="current-year"></span> портфолио</div>
         <div style="display: flex; gap: 1.5rem;">
